@@ -13,6 +13,14 @@ private:
     const char delimeter;
     std::stringstream line;
 
+    bool is_valid_bool(std::string token);
+
+    bool is_valid_int(std::string token);
+
+    bool is_valid_float(std::string token);
+
+    bool is_valid_char(std::string token);
+
 public:
     Parser() : delimeter{' '} {}
 
