@@ -7,6 +7,7 @@ include_directories(${INCLUDES})
 
 add_library(${PROJECT_NAME}
     "src/command.cpp"
+    "src/cli.cpp"
 )
 
 set_target_properties(${PROJECT_NAME}
@@ -32,7 +33,7 @@ install(TARGETS skycli
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-install(FILES "include/command.hpp" DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
+install(FILES "include/command.hpp" "include/cli.hpp" DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
 
 install(EXPORT skycli-targets
     FILE skycli-targets.cmake
