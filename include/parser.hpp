@@ -27,6 +27,8 @@ public:
     Parser(const char delim) : delimeter(delim) {}
 
     void load_line(std::string new_line);
+
+    std::string get_next_token(arg_type_t token_type);
 };
 
 } // namespace skycli

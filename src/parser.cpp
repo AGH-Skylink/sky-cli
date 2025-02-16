@@ -55,4 +55,38 @@ bool Parser::is_valid_char(std::string token) {
     return token.length() == 1;
 }
 
+std::string Parser::get_next_token(arg_type_t token_type) {
+    std::string token;
+
+    bool is_valid;
+
+    getline(this->line, token, this->delimeter);
+
+    switch (token_type) {
+        case BOOL:
+            is_valid = is_valid_bool(token);
+            break;
+        case INT:
+            is_valid = is_valid_int(token);
+            break;
+        case FLOAT:
+            is_valid = is_valid_float(token);
+            break;
+        case DOUBLE:
+            is_valid = is_valid_float(token);
+            break;
+        case CHAR:
+            is_valid = is_valid_char(token);
+            break;
+        case STRING:
+            is_valid = true;
+            break;
+    }
+
+    if (is_valid) {
+        return token;
+    }
+    else return "";
 }
+
+} // namespace skycli
