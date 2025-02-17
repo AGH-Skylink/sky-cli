@@ -14,6 +14,6 @@ enum arg_type_t {
 
 arg_type_t deduce_type(const char *type_name);
 
-}
+} // namespace skycli
 
 #endif //SKYCLI_TYPING_H

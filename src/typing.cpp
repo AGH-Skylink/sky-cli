@@ -31,4 +31,4 @@ arg_type_t deduce_type(const char *type_name) {
     }
 }
 
-}
+} // namespace skycli
