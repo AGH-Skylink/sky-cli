@@ -41,6 +41,14 @@ private:
     std::vector<arg_type_t> arg_types;
     std::shared_ptr<Parser> parser;
 
+    /** @brief Converts a string to given type
+    *
+    * Converts the string to a type given by arg_type.
+    * Returns an std::any object.
+    * 
+    * @param[in] arg_type result type
+    * @param[in] var string to convert 
+    */
     std::any convert_to_type(const arg_type_t arg_type, const std::string var);
 
 public:
@@ -70,10 +78,31 @@ public:
         return *this;
     }
 
+    /** @brief Get access to an args member
+    *
+    * Returns a reference to the specified args member
+    * 
+    * @param[in] i the args' number
+    */
     std::any &get_arg(const int i) const;
 
+    /** @brief Load arguments into args
+    *
+    * Loads and checks argument tokens with the parser.
+    * Returns CmdResponse. In the case of an argument of a wrong time, 
+    * the responses error code is WRONG_TYPE_ARG. If there were not enough 
+    * arguments given, it returns with a INSUFFICIENT_ARGS error code.
+    * 
+    * @param[in] void
+    */
     CmdResponse load_arguments();
     
+    /** @brief Execute the function
+    * 
+    * Executes the function with currently held arguments
+    * 
+    * @param[in] void
+    */
     void execute();
 };
 

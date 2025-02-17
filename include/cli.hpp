@@ -19,6 +19,12 @@ private:
     const std::string prompt;
     std::shared_ptr<Parser> parser;
 
+    /** @brief Handle a CmdResponse during runtime
+    *
+    * Returns true if the response was succesful, false otherwise
+    * 
+    * @param[in] response the response to handle
+    */
     bool handle_cmd_response(CmdResponse response);
 
 public:
@@ -38,8 +44,23 @@ public:
         this->parser = std::make_shared<Parser>(delim);
     }
 
+    /** @brief Adds a new command to the CLI
+    *
+    * Maps a function to the given command name.
+    * Created Command object is supplied with the type vector.
+    * 
+    * @param[in] command_name the name which will be mapped to the command
+    * @param[in] func function to be called by the command
+    * @param[in] type_vec vector of function arguments' types
+    */
     void add_command(std::string command_name, std::function<void(BaseArgs *)> func, std::vector<arg_type_t> type_vec);
 
+    /** @brief Run CLI
+    *
+    * Runs the main loop of the CLI
+    * 
+    * @param[in] void
+    */
     void run_loop();
 };
 

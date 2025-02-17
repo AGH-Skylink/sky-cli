@@ -12,6 +12,13 @@ enum arg_type_t {
     STRING = 5
 };
 
+/** @brief Returns the type 
+*
+* Returns an arg_type_t value, that matches the type given 
+* by the type_name.
+* 
+* @param[in] type_name 
+*/
 arg_type_t deduce_type(const char *type_name);
 
 } // namespace skycli

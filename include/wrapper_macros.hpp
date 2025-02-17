@@ -67,6 +67,18 @@ cli_obj.add_command(#command_name, func##_wrapper, vec); \
 #define add_command_to_cli_impl(cli_obj, command_name, func, number_of_args, ...) \
 CONCAT(number_of_args) (cli_obj, command_name, func, __VA_ARGS__)
 
+/** @brief Adds a command to a CLI 
+*
+* Macro for automatic wrapping and adding commands to CLI.
+* Adds a command invoked by command_name to the CLI.
+* The command executes the provided function func with 
+* the parameters provided in the CLI. 
+* 
+* @param[in] cli_obj name of an existing CLI object
+* @param[in] command_name name of the new command
+* @param[in] func underlying function for the command
+* @param[in] ... func arguments' types
+*/
 #define add_command_to_cli(cli_obj, command_name, func, ...) \
 add_command_to_cli_impl(cli_obj, command_name, func, COUNT_VARGS(__VA_ARGS__), __VA_ARGS__)
 
