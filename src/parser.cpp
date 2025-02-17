@@ -5,9 +5,10 @@
 namespace skycli {
 
 void Parser::load_line(std::string new_line) {
-    if (!new_line.empty())
-        this->line.clear();
+    if (!new_line.empty()) {
+        this->line = std::stringstream();
         this->line << new_line;
+    }
 }
 
 bool Parser::is_valid_bool(std::string token) {
