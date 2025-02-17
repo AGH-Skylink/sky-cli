@@ -12,6 +12,9 @@ add_library(${PROJECT_NAME}
     "src/parser.cpp"
 )
 
+include_directories(/usr/include/readline)
+target_link_libraries(${PROJECT_NAME} readline)
+
 set_target_properties(${PROJECT_NAME}
     PROPERTIES
     LINKER_LANGUAGE CXX

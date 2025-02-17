@@ -9,6 +9,7 @@
 #include <vector>
 #include <functional>
 #include <memory>
+#include <iostream>
 
 namespace skycli {
 
@@ -17,6 +18,8 @@ private:
     std::map<std::string, std::unique_ptr<Command>> commands;
     const std::string prompt;
     std::shared_ptr<Parser> parser;
+
+    bool handle_cmd_response(CmdResponse response);
 
 public:
     CLI() : prompt{"> "} {
@@ -36,6 +39,8 @@ public:
     }
 
     void add_command(std::string command_name, std::function<void(BaseArgs *)> func, std::vector<arg_type_t> type_vec);
+
+    void run_loop();
 };
 
 } // namespace skycli
