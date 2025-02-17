@@ -3,6 +3,11 @@
 
 #include "typing.hpp"
 
+#define CONCAT(i) add_command_to_cli_ ## i
+
+#define COUNT_VARGS_IMPL(_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, N, ...) N
+#define COUNT_VARGS(...) COUNT_VARGS_IMPL(_, ##__VA_ARGS__, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
+
 #define add_command_to_cli_0(cli_obj, command_name, func) { \
 std::vector<skycli::arg_type_t> vec = {}; \
 std::function<void(skycli::BaseArgs *)> func##_wrapper = [](skycli::BaseArgs *args) { \
@@ -59,7 +64,10 @@ std::function<void(skycli::BaseArgs *)> func##_wrapper = [](skycli::BaseArgs *ar
 cli_obj.add_command(#command_name, func##_wrapper, vec); \
 }
 
-#define add_command_to_cli(cli_obj, command_name, func, number_of_args, ...) \
-add_command_to_cli_##number_of_args (cli_obj, command_name, func, __VA_ARGS__)
+#define add_command_to_cli_impl(cli_obj, command_name, func, number_of_args, ...) \
+CONCAT(number_of_args) (cli_obj, command_name, func, __VA_ARGS__)
+
+#define add_command_to_cli(cli_obj, command_name, func, ...) \
+add_command_to_cli_impl(cli_obj, command_name, func, COUNT_VARGS(__VA_ARGS__), __VA_ARGS__)
 
 #endif //SKYCLI_WRAPPER_MACROS_H
