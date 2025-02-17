@@ -20,6 +20,19 @@ struct BaseArgs {
     std::any _5;
 };
 
+enum cmd_error_t {
+    NO_ERROR = 0,
+    INSUFFICIENT_ARGS = -1,
+    WRONG_TYPE_ARG = -2,
+};
+
+struct CmdResponse {
+    cmd_error_t error_code;
+    size_t error_arg_num;
+    size_t arg_count;
+    arg_type_t arg_type;
+};
+
 class Command {
 private:
     std::function<void(BaseArgs *)> func;
@@ -58,6 +71,8 @@ public:
     }
 
     std::any &get_arg(const int i) const;
+
+    CmdResponse load_arguments();
     
     void execute();
 };

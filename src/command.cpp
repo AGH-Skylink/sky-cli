@@ -56,6 +56,26 @@ std::any& Command::get_arg(const int n) const {
     return this->args->_0;
 }
 
+CmdResponse Command::load_arguments() {
+    std::optional<std::string> token;
+
+    for (size_t i = 0; i < this->arg_count; i++) {
+        token = parser->get_next_token(arg_types[i]);
+
+        if (!token.has_value()) {
+            return CmdResponse{WRONG_TYPE_ARG, i, this->arg_count, arg_types[i]};
+        }
+
+        if (token.value().empty()) {
+            return CmdResponse{INSUFFICIENT_ARGS, i, this->arg_count, arg_types[i]};
+        }
+
+        get_arg(i) = this->convert_to_type(arg_types[i], token.value());
+    }
+
+    return CmdResponse{NO_ERROR};
+}
+
 void Command::execute() {
     this->func(this->args.get());
 }
