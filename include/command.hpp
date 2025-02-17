@@ -28,6 +28,8 @@ private:
     std::vector<arg_type_t> arg_types;
     std::shared_ptr<Parser> parser;
 
+    std::any convert_to_type(const arg_type_t arg_type, const std::string var);
+
 public:
     Command() {
         this->args = std::make_unique<BaseArgs>();

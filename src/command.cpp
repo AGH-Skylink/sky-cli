@@ -1,6 +1,41 @@
 #include "../include/command.hpp"
 
+#include <iostream>
+#include <optional>
+
 namespace skycli {
+
+std::any Command::convert_to_type(const arg_type_t arg_type, const std::string var) {
+    std::any converted;
+    
+    switch(arg_type) {
+        case BOOL:
+            if (!var.compare("0") || !var.compare("false") || !var.compare("FALSE")) {
+                converted = false;
+            }
+            else if (!var.compare("1") || !var.compare("true") || !var.compare("TRUE")) {
+                converted = true;
+            }
+            break;
+        case INT:
+            converted = std::stoi(var);
+            break;
+        case FLOAT:
+            converted = std::stof(var);
+            break;
+        case DOUBLE:
+            converted = std::stod(var);
+            break;
+        case CHAR:
+            converted = *(var.c_str());
+            break;
+        case STRING:
+            converted = var;
+            break;
+    }
+
+    return converted;
+}
 
 std::any& Command::get_arg(const int n) const {
     switch (n) {
