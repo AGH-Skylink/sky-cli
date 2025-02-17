@@ -38,7 +38,7 @@ install(TARGETS skycli
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-install(FILES "include/command.hpp" "include/cli.hpp" "include/typing.hpp" "include/parser.hpp" DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
+install(FILES "include/command.hpp" "include/cli.hpp" "include/typing.hpp" "include/parser.hpp" "include/wrapper_macros.hpp" DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
 
 install(EXPORT skycli-targets
     FILE skycli-targets.cmake
