@@ -5,6 +5,7 @@
 
 #include <string>
 #include <sstream>
+#include <optional>
 
 namespace skycli {
 

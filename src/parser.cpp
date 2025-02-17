@@ -1,7 +1,6 @@
 #include "../include/parser.hpp"
 
 #include <algorithm>
-#include <optional>
 
 namespace skycli {
 
