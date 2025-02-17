@@ -1,6 +1,7 @@
 #include "../include/parser.hpp"
 
 #include <algorithm>
+#include <optional>
 
 namespace skycli {
 
@@ -55,12 +56,14 @@ bool Parser::is_valid_char(std::string token) {
     return token.length() == 1;
 }
 
-std::string Parser::get_next_token(arg_type_t token_type) {
+std::optional<std::string> Parser::get_next_token(arg_type_t token_type) {
     std::string token;
 
     bool is_valid;
 
     getline(this->line, token, this->delimeter);
+
+    if (token.empty()) return "";
 
     switch (token_type) {
         case BOOL:
@@ -86,7 +89,7 @@ std::string Parser::get_next_token(arg_type_t token_type) {
     if (is_valid) {
         return token;
     }
-    else return "";
+    else return std::nullopt;
 }
 
 } // namespace skycli
