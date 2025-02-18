@@ -22,6 +22,7 @@ set_target_properties(${PROJECT_NAME}
     CMAKE_CXX_STANDARD_REQUIRED ON
 )
 
+# Install the library
 include(GNUInstallDirs)
 
 target_include_directories(${PROJECT_NAME}
@@ -57,3 +58,14 @@ install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/skycli-config.cmake"
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
 )
+
+# Setup tests
+enable_testing()
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIR})
+
+add_executable(runTests
+    test/test_parser.cpp
+)
+
+target_link_libraries(runTests gtest gtest_main pthread ${PROJECT_NAME})
