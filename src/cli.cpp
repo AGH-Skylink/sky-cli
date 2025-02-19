@@ -24,7 +24,7 @@ bool CLI::handle_cmd_response(CmdResponse response) {
 }
 
 void CLI::add_command(std::string command_name, std::function<void(BaseArgs *)> func, std::vector<arg_type_t> type_vec) {
-    this->commands[command_name] = std::make_unique<Command>(func, type_vec, this->parser);
+    this->commands[command_name] = std::make_unique<Command>(func, type_vec, this->parser, this->static_vars);
 }
 
 void CLI::run_loop() {

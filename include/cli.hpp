@@ -3,6 +3,7 @@
 
 #include "command.hpp"
 #include "parser.hpp"
+#include "static_var_holder.hpp"
 
 #include <map>
 #include <string>
@@ -18,6 +19,7 @@ private:
     std::map<std::string, std::unique_ptr<Command>> commands;
     const std::string prompt;
     std::shared_ptr<Parser> parser;
+    std::shared_ptr<StaticVarHolder> static_vars;
 
     /** @brief Handle a CmdResponse during runtime
     *
@@ -30,18 +32,22 @@ private:
 public:
     CLI() : prompt{"> "} {
         this->parser = std::make_shared<Parser>();
+        this->static_vars = std::make_shared<StaticVarHolder>();
     }
 
     CLI(const char &delim) : prompt{"> "} {
         this->parser = std::make_shared<Parser>(delim);
+        this->static_vars = std::make_shared<StaticVarHolder>();
     }
 
     CLI(const std::string &prompt_text) : prompt{prompt_text} {
         this->parser = std::make_shared<Parser>();
+        this->static_vars = std::make_shared<StaticVarHolder>();
     }
 
     CLI(const std::string &prompt_text, const char &delim) : prompt{prompt_text} {
         this->parser = std::make_shared<Parser>(delim);
+        this->static_vars = std::make_shared<StaticVarHolder>();
     }
 
     /** @brief Adds a new command to the CLI
@@ -54,6 +60,11 @@ public:
     * @param[in] type_vec vector of function arguments' types
     */
     void add_command(std::string command_name, std::function<void(BaseArgs *)> func, std::vector<arg_type_t> type_vec);
+
+    template <typename T>
+    void add_static_var(std::string variable_name) {
+        static_vars->add_new_var<T>(variable_name);
+    }
 
     /** @brief Run CLI
     *

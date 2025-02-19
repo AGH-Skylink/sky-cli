@@ -3,6 +3,7 @@
 
 #include "typing.hpp"
 #include "parser.hpp"
+#include "static_var_holder.hpp"
 
 #include <functional>
 #include <any>
@@ -18,6 +19,7 @@ struct BaseArgs {
     std::any _3;
     std::any _4;
     std::any _5;
+    std::shared_ptr<StaticVarHolder> static_vars;
 };
 
 enum cmd_error_t {
@@ -57,12 +59,13 @@ public:
         this->arg_count = 0;
     }
 
-    Command(std::function<void(BaseArgs *)> f, std::vector<arg_type_t> v, std::shared_ptr<Parser> parser_ptr) {
+    Command(std::function<void(BaseArgs *)> f, std::vector<arg_type_t> v, std::shared_ptr<Parser> parser_ptr, std::shared_ptr<StaticVarHolder> static_vars_ptr) {
         this->func = f;
         this->args = std::make_unique<BaseArgs>();
         this->arg_types = v;
         this->arg_count = v.size();
         this->parser = parser_ptr;
+        this->args->static_vars = static_vars_ptr;
     }
 
     Command &operator=(const Command& other) {
@@ -70,6 +73,8 @@ public:
         this->arg_count = other.arg_count;
         this->arg_types = other.arg_types;
         this->parser = other.parser;
+
+        this->args->static_vars = other.args->static_vars;
 
         for (size_t i = 0; i < this->arg_count; i++) {
             this->get_arg(i) = other.get_arg(i);
