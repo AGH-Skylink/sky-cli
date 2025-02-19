@@ -4,6 +4,7 @@
 #include "command.hpp"
 #include "parser.hpp"
 #include "static_var_holder.hpp"
+#include "help_message.hpp"
 
 #include <map>
 #include <string>
@@ -20,6 +21,9 @@ private:
     const std::string prompt;
     std::shared_ptr<Parser> parser;
     std::shared_ptr<StaticVarHolder> static_vars;
+    std::vector<HelpMessage> help_messages;
+
+    void print_help();
 
     /** @brief Handle a CmdResponse during runtime
     *
@@ -59,7 +63,7 @@ public:
     * @param[in] func function to be called by the command
     * @param[in] type_vec vector of function arguments' types
     */
-    void add_command(std::string command_name, std::function<void(BaseArgs *)> func, std::vector<arg_type_t> type_vec);
+    void add_command(std::string command_name, std::string description, std::function<void(BaseArgs *)> func, std::vector<arg_type_t> type_vec);
 
     template <typename T>
     void add_static_var(std::string variable_name) {

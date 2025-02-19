@@ -6,6 +6,22 @@
 
 namespace skycli {
 
+void CLI::print_help() {
+    std::cout << "AVAILABLE COMMANDS:" << std::endl;
+
+    for (auto msg : help_messages) {
+        msg.print_message();
+    }
+
+    std::cout << "help/HELP - argument #: 0" << std::endl;
+    std::cout << "    " << "Lists all available commands" << std::endl;
+    std::cout << "--------------------" << std::endl; 
+
+    std::cout << "exit/EXIT - argument #: 0" << std::endl;
+    std::cout << "    " << "Exits the CLI" << std::endl;
+    std::cout << "--------------------" << std::endl; 
+}
+
 bool CLI::handle_cmd_response(CmdResponse response) {
     TypingUtil util;
 
@@ -23,8 +39,10 @@ bool CLI::handle_cmd_response(CmdResponse response) {
     }
 }
 
-void CLI::add_command(std::string command_name, std::function<void(BaseArgs *)> func, std::vector<arg_type_t> type_vec) {
+void CLI::add_command(std::string command_name, std::string description, std::function<void(BaseArgs *)> func, std::vector<arg_type_t> type_vec) {
     this->commands[command_name] = std::make_unique<Command>(func, type_vec, this->parser, this->static_vars);
+    HelpMessage msg{command_name, description, type_vec};
+    this->help_messages.push_back(msg);
 }
 
 void CLI::run_loop() {
@@ -42,6 +60,10 @@ void CLI::run_loop() {
             if (cmd_token.value() == "exit" || cmd_token.value() == "EXIT") {
                 break;
             }
+            else if (cmd_token.value() == "help" || cmd_token.value() == "HELP") {
+                this->print_help();
+                continue;
+            }
 
             if (this->commands.find(cmd_token.value()) != this->commands.end()) {
                 response = this->commands[cmd_token.value()]->load_arguments();
@@ -49,6 +71,9 @@ void CLI::run_loop() {
                 if (handle_cmd_response(response)) {
                     this->commands[cmd_token.value()]->execute();
                 }
+            }
+            else {
+                std::cout << "Unknown command. Maybe try using \'help\'?" << std::endl;
             }
         }
         
