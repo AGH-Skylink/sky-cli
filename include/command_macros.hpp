@@ -27,7 +27,8 @@ cli_obj.add_command(#command_name, func##_wrapper, vec); \
 }
 
 #define add_command_to_cli_1(cli_obj, command_name, func, type1) { \
-std::vector<skycli::arg_type_t> vec = {skycli::deduce_type(typeid(type1).name())}; \
+skycli::TypingUtil util; \
+std::vector<skycli::arg_type_t> vec = {util.deduce_type(typeid(type1).name())}; \
 std::function<void(skycli::BaseArgs *)> func##_wrapper = [](skycli::BaseArgs *args) { \
     func(std::any_cast<type1>(args->_0)); \
 }; \
@@ -35,7 +36,8 @@ cli_obj.add_command(#command_name, func##_wrapper, vec); \
 }
 
 #define add_command_to_cli_s_1(cli_obj, command_name, func, type1) { \
-std::vector<skycli::arg_type_t> vec = {skycli::deduce_type(typeid(type1).name())}; \
+skycli::TypingUtil util; \
+std::vector<skycli::arg_type_t> vec = {util.deduce_type(typeid(type1).name())}; \
 std::function<void(skycli::BaseArgs *)> func##_wrapper = [](skycli::BaseArgs *args) { \
     func(args->static_vars.get(), std::any_cast<type1>(args->_0)); \
 }; \
@@ -43,7 +45,8 @@ cli_obj.add_command(#command_name, func##_wrapper, vec); \
 }
 
 #define add_command_to_cli_2(cli_obj, command_name, func, uses_static, type1, type2) { \
-std::vector<skycli::arg_type_t> vec = {skycli::deduce_type(typeid(type1).name()), skycli::deduce_type(typeid(type2).name())}; \
+skycli::TypingUtil util; \
+std::vector<skycli::arg_type_t> vec = {util.deduce_type(typeid(type1).name()), util.deduce_type(typeid(type2).name())}; \
 std::function<void(skycli::BaseArgs *)> func##_wrapper = [](skycli::BaseArgs *args) { \
     func(std::any_cast<type1>(args->_0), std::any_cast<type2>(args->_1)); \
 }; \
@@ -51,7 +54,8 @@ cli_obj.add_command(#command_name, func##_wrapper, vec); \
 }
 
 #define add_command_to_cli_s_2(cli_obj, command_name, func, type1, type2) { \
-std::vector<skycli::arg_type_t> vec = {skycli::deduce_type(typeid(type1).name()), skycli::deduce_type(typeid(type2).name())}; \
+skycli::TypingUtil util; \
+std::vector<skycli::arg_type_t> vec = {util.deduce_type(typeid(type1).name()), util.deduce_type(typeid(type2).name())}; \
 std::function<void(skycli::BaseArgs *)> func##_wrapper = [](skycli::BaseArgs *args) { \
     func(args->static_vars.get(), std::any_cast<type1>(args->_0), std::any_cast<type2>(args->_1)); \
 }; \
@@ -59,7 +63,8 @@ cli_obj.add_command(#command_name, func##_wrapper, vec); \
 }
 
 #define add_command_to_cli_3(cli_obj, command_name, func, type1, type2, type3) { \
-std::vector<skycli::arg_type_t> vec = {skycli::deduce_type(typeid(type1).name()), skycli::deduce_type(typeid(type2).name()), skycli::deduce_type(typeid(type3).name())}; \
+skycli::TypingUtil util; \
+std::vector<skycli::arg_type_t> vec = {util.deduce_type(typeid(type1).name()), util.deduce_type(typeid(type2).name()), util.deduce_type(typeid(type3).name())}; \
 std::function<void(skycli::BaseArgs *)> func##_wrapper = [](skycli::BaseArgs *args) { \
     func(std::any_cast<type1>(args->_0), std::any_cast<type2>(args->_1), std::any_cast<type3>(args->_2)); \
 }; \
@@ -67,7 +72,8 @@ cli_obj.add_command(#command_name, func##_wrapper, vec); \
 }
 
 #define add_command_to_cli_s_3(cli_obj, command_name, func, type1, type2, type3) { \
-std::vector<skycli::arg_type_t> vec = {skycli::deduce_type(typeid(type1).name()), skycli::deduce_type(typeid(type2).name()), skycli::deduce_type(typeid(type3).name())}; \
+skycli::TypingUtil util; \
+std::vector<skycli::arg_type_t> vec = {util.deduce_type(typeid(type1).name()), util.deduce_type(typeid(type2).name()), util.deduce_type(typeid(type3).name())}; \
 std::function<void(skycli::BaseArgs *)> func##_wrapper = [](skycli::BaseArgs *args) { \
     func(args->static_vars.get(), std::any_cast<type1>(args->_0), std::any_cast<type2>(args->_1), std::any_cast<type3>(args->_2)); \
 }; \
@@ -75,7 +81,8 @@ cli_obj.add_command(#command_name, func##_wrapper, vec); \
 }
 
 #define add_command_to_cli_4(cli_obj, command_name, func, type1, type2, type3, type4) { \
-std::vector<skycli::arg_type_t> vec = {skycli::deduce_type(typeid(type1).name()), skycli::deduce_type(typeid(type2).name()), skycli::deduce_type(typeid(type3).name()), skycli::deduce_type(typeid(type4).name())}; \
+skycli::TypingUtil util; \
+std::vector<skycli::arg_type_t> vec = {util.deduce_type(typeid(type1).name()), util.deduce_type(typeid(type2).name()), util.deduce_type(typeid(type3).name()), util.deduce_type(typeid(type4).name())}; \
 std::function<void(skycli::BaseArgs *)> func##_wrapper = [](skycli::BaseArgs *args) { \
     func(std::any_cast<type1>(args->_0), std::any_cast<type2>(args->_1), std::any_cast<type3>(args->_2), std::any_cast<type4>(args->_3)); \
 }; \
@@ -83,7 +90,8 @@ cli_obj.add_command(#command_name, func##_wrapper, vec); \
 }
 
 #define add_command_to_cli_s_4(cli_obj, command_name, func, type1, type2, type3, type4) { \
-std::vector<skycli::arg_type_t> vec = {skycli::deduce_type(typeid(type1).name()), skycli::deduce_type(typeid(type2).name()), skycli::deduce_type(typeid(type3).name()), skycli::deduce_type(typeid(type4).name())}; \
+skycli::TypingUtil util; \
+std::vector<skycli::arg_type_t> vec = {util.deduce_type(typeid(type1).name()), util.deduce_type(typeid(type2).name()), util.deduce_type(typeid(type3).name()), util.deduce_type(typeid(type4).name())}; \
 std::function<void(skycli::BaseArgs *)> func##_wrapper = [](skycli::BaseArgs *args) { \
     func(args->static_vars.get(), std::any_cast<type1>(args->_0), std::any_cast<type2>(args->_1), std::any_cast<type3>(args->_2), std::any_cast<type4>(args->_3)); \
 }; \
@@ -91,7 +99,8 @@ cli_obj.add_command(#command_name, func##_wrapper, vec); \
 }
 
 #define add_command_to_cli_5(cli_obj, command_name, func, type1, type2, type3, type4, type5) { \
-std::vector<skycli::arg_type_t> vec = {skycli::deduce_type(typeid(type1).name()), skycli::deduce_type(typeid(type2).name()), skycli::deduce_type(typeid(type3).name()), skycli::deduce_type(typeid(type4).name()), skycli::deduce_type(typeid(type5).name())}; \
+skycli::TypingUtil util; \
+std::vector<skycli::arg_type_t> vec = {util.deduce_type(typeid(type1).name()), util.deduce_type(typeid(type2).name()), util.deduce_type(typeid(type3).name()), util.deduce_type(typeid(type4).name()), util.deduce_type(typeid(type5).name())}; \
 std::function<void(skycli::BaseArgs *)> func##_wrapper = [](skycli::BaseArgs *args) { \
     func(std::any_cast<type1>(args->_0), std::any_cast<type2>(args->_1), std::any_cast<type3>(args->_2), std::any_cast<type4>(args->_3), std::any_cast<type5>(args->_4)); \
 }; \
@@ -99,7 +108,8 @@ cli_obj.add_command(#command_name, func##_wrapper, vec); \
 }
 
 #define add_command_to_cli_s_5(cli_obj, command_name, func, type1, type2, type3, type4, type5) { \
-std::vector<skycli::arg_type_t> vec = {skycli::deduce_type(typeid(type1).name()), skycli::deduce_type(typeid(type2).name()), skycli::deduce_type(typeid(type3).name()), skycli::deduce_type(typeid(type4).name()), skycli::deduce_type(typeid(type5).name())}; \
+skycli::TypingUtil util; \
+std::vector<skycli::arg_type_t> vec = {util.deduce_type(typeid(type1).name()), util.deduce_type(typeid(type2).name()), util.deduce_type(typeid(type3).name()), util.deduce_type(typeid(type4).name()), util.deduce_type(typeid(type5).name())}; \
 std::function<void(skycli::BaseArgs *)> func##_wrapper = [](skycli::BaseArgs *args) { \
     func(args->static_vars.get(), std::any_cast<type1>(args->_0), std::any_cast<type2>(args->_1), std::any_cast<type3>(args->_2), std::any_cast<type4>(args->_3), std::any_cast<type5>(args->_4)); \
 }; \
@@ -107,15 +117,17 @@ cli_obj.add_command(#command_name, func##_wrapper, vec); \
 }
 
 #define add_command_to_cli_6(cli_obj, command_name, func, type1, type2, type3, type4, type5, type6) { \
-std::vector<skycli::arg_type_t> vec = {skycli::deduce_type(typeid(type1).name()), skycli::deduce_type(typeid(type2).name()), skycli::deduce_type(typeid(type3).name()), skycli::deduce_type(typeid(type4).name()), skycli::deduce_type(typeid(type5).name()), skycli::deduce_type(typeid(type6).name())}; \
+skycli::TypingUtil util; \
+std::vector<skycli::arg_type_t> vec = {util.deduce_type(typeid(type1).name()), util.deduce_type(typeid(type2).name()), util.deduce_type(typeid(type3).name()), util.deduce_type(typeid(type4).name()), util.deduce_type(typeid(type5).name()), util.deduce_type(typeid(type6).name())}; \
 std::function<void(skycli::BaseArgs *)> func##_wrapper = [](skycli::BaseArgs *args) { \
     func(std::any_cast<type1>(args->_0), std::any_cast<type2>(args->_1), std::any_cast<type3>(args->_2), std::any_cast<type4>(args->_3), std::any_cast<type5>(args->_4), std::any_cast<type6>(args->_5)); \
 }; \
 cli_obj.add_command(#command_name, func##_wrapper, vec); \
 }
 
-#define add_command_to_cli_6(cli_obj, command_name, func, type1, type2, type3, type4, type5, type6) { \
-std::vector<skycli::arg_type_t> vec = {skycli::deduce_type(typeid(type1).name()), skycli::deduce_type(typeid(type2).name()), skycli::deduce_type(typeid(type3).name()), skycli::deduce_type(typeid(type4).name()), skycli::deduce_type(typeid(type5).name()), skycli::deduce_type(typeid(type6).name())}; \
+#define add_command_to_cli_s_6(cli_obj, command_name, func, type1, type2, type3, type4, type5, type6) { \
+skycli::TypingUtil util; \
+std::vector<skycli::arg_type_t> vec = {util.deduce_type(typeid(type1).name()), util.deduce_type(typeid(type2).name()), util.deduce_type(typeid(type3).name()), util.deduce_type(typeid(type4).name()), util.deduce_type(typeid(type5).name()), util.deduce_type(typeid(type6).name())}; \
 std::function<void(skycli::BaseArgs *)> func##_wrapper = [](skycli::BaseArgs *args) { \
     func(args->static_vars.get(), std::any_cast<type1>(args->_0), std::any_cast<type2>(args->_1), std::any_cast<type3>(args->_2), std::any_cast<type4>(args->_3), std::any_cast<type5>(args->_4), std::any_cast<type6>(args->_5)); \
 }; \

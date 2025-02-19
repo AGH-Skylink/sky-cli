@@ -7,7 +7,7 @@
 namespace skycli {
 
 bool CLI::handle_cmd_response(CmdResponse response) {
-    std::array<std::string, 6> type_names = {"bool", "int", "float", "double", "char", "string"};
+    TypingUtil util;
 
     switch(response.error_code) {
         case NO_ERROR:
@@ -16,7 +16,7 @@ bool CLI::handle_cmd_response(CmdResponse response) {
             std::cout << "Warning: Insufficient number of arguments. Expected: " << response.arg_count << ", received: " << response.error_arg_num << std::endl;
             return false;
         case WRONG_TYPE_ARG:
-            std::cout << "Warning: Wrong type of argument #" << response.error_arg_num + 1 << ". Argument type should be: " << type_names[response.arg_type] << std::endl;
+            std::cout << "Warning: Wrong type of argument #" << response.error_arg_num + 1 << ". Argument type should be: " << util.get_type_string(response.arg_type) << std::endl;
             return false;
         default:
             throw std::runtime_error("Unknown CmdResponse error code.");
