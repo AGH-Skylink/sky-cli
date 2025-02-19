@@ -39,6 +39,10 @@ void CLI::run_loop() {
         cmd_token = this->parser->get_next_token(STRING);
 
         if (!cmd_token.value().empty()) {
+            if (cmd_token.value() == "exit" || cmd_token.value() == "EXIT") {
+                break;
+            }
+
             if (this->commands.find(cmd_token.value()) != this->commands.end()) {
                 response = this->commands[cmd_token.value()]->load_arguments();
 
