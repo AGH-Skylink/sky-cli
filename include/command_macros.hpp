@@ -44,7 +44,7 @@ std::function<void(skycli::BaseArgs *)> func##_wrapper = [](skycli::BaseArgs *ar
 cli_obj.add_command(#command_name, desc, func##_wrapper, vec); \
 }
 
-#define add_command_to_cli_2(cli_obj, command_name, desc, func, uses_static, type1, type2) { \
+#define add_command_to_cli_2(cli_obj, command_name, desc, func, type1, type2) { \
 skycli::TypingUtil util; \
 std::vector<skycli::arg_type_t> vec = {util.deduce_type(typeid(type1).name()), util.deduce_type(typeid(type2).name())}; \
 std::function<void(skycli::BaseArgs *)> func##_wrapper = [](skycli::BaseArgs *args) { \
