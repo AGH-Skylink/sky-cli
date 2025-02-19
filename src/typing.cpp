@@ -7,7 +7,7 @@
 
 namespace skycli {
 
-arg_type_t deduce_type(const char *type_name) {
+arg_type_t TypingUtil::deduce_type(const char *type_name) {
     if (strcmp(type_name, typeid(bool).name()) == 0) {
         return BOOL;
     }
@@ -29,6 +29,10 @@ arg_type_t deduce_type(const char *type_name) {
     else {
         throw std::logic_error("Failed: Unknown parameter type!");
     }
+}
+
+std::string TypingUtil::get_type_string(arg_type_t type) {
+    return type_names[type];
 }
 
 } // namespace skycli

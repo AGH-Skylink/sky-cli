@@ -1,6 +1,9 @@
 #ifndef SKYCLI_TYPING_H
 #define SKYCLI_TYPING_H
 
+#include <array>
+#include <string>
+
 namespace skycli {
 
 enum arg_type_t {
@@ -12,14 +15,22 @@ enum arg_type_t {
     STRING = 5
 };
 
-/** @brief Returns the type 
-*
-* Returns an arg_type_t value, that matches the type given 
-* by the type_name.
-* 
-* @param[in] type_name 
-*/
-arg_type_t deduce_type(const char *type_name);
+class TypingUtil {
+private:
+    const std::array<std::string, 6> type_names = {"bool", "int", "float", "double", "char", "string"};
+
+public:
+    /** @brief Returns the type 
+    *
+    * Returns an arg_type_t value, that matches the type given 
+    * by the type_name.
+    * 
+    * @param[in] type_name 
+    */
+    arg_type_t deduce_type(const char *type_name);
+
+    std::string get_type_string(arg_type_t type);
+};
 
 } // namespace skycli
 
