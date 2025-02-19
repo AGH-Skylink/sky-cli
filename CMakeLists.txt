@@ -10,6 +10,7 @@ add_library(${PROJECT_NAME}
     "src/cli.cpp"
     "src/typing.cpp"
     "src/parser.cpp"
+    "src/help_message.cpp"
 )
 
 include_directories(/usr/include/readline)
@@ -47,6 +48,7 @@ install(FILES
     "include/command_macros.hpp" 
     "include/static_var_holder.hpp"
     "include/static_var_macros.hpp" 
+    "include/help_message.hpp"
     "include/skycli.hpp" 
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
 
