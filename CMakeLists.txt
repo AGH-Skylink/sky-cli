@@ -44,8 +44,9 @@ install(FILES
     "include/cli.hpp" 
     "include/typing.hpp" 
     "include/parser.hpp" 
-    "include/wrapper_macros.hpp" 
-    "include/static_var_holder.hpp" 
+    "include/command_macros.hpp" 
+    "include/static_var_holder.hpp"
+    "include/static_var_macros.hpp" 
     "include/skycli.hpp" 
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
 
