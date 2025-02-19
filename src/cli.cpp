@@ -46,13 +46,16 @@ void CLI::add_command(std::string command_name, std::string description, std::fu
 }
 
 void CLI::run_loop() {
+    char *temp;
     std::string curr_line;
     std::optional<std::string> cmd_token;
     CmdResponse response;
 
     while (true) {
-        curr_line = readline(this->prompt.c_str());
-        
+        temp = readline(this->prompt.c_str());
+        curr_line = temp;
+        free(temp);
+
         this->parser->load_line(curr_line);
         cmd_token = this->parser->get_next_token(STRING);
 
