@@ -8,7 +8,7 @@ include_directories(${INCLUDES})
 add_library(${PROJECT_NAME}
     "src/command.cpp"
     "src/cli.cpp"
-    "src/typing.cpp"
+    "src/typing_util.cpp"
     "src/parser.cpp"
     "src/help_message.cpp"
 )
@@ -43,7 +43,7 @@ install(TARGETS skycli
 install(FILES 
     "include/command.hpp" 
     "include/cli.hpp" 
-    "include/typing.hpp" 
+    "include/typing_util.hpp" 
     "include/parser.hpp" 
     "include/command_macros.hpp" 
     "include/static_var_holder.hpp"
@@ -77,6 +77,7 @@ include_directories(${GTEST_INCLUDE_DIR})
 
 add_executable(runTests
     test/test_parser.cpp
+    test/test_typing_util.cpp
 )
 
 target_link_libraries(runTests gtest gtest_main pthread ${PROJECT_NAME})
