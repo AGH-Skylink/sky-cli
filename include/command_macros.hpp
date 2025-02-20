@@ -1,7 +1,7 @@
 #ifndef SKYCLI_WRAPPER_MACROS_H
 #define SKYCLI_WRAPPER_MACROS_H
 
-#include "typing.hpp"
+#include "typing_util.hpp"
 
 #define CONCAT(i) add_command_to_cli_ ## i
 

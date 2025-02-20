@@ -1,7 +1,7 @@
 #ifndef SKYCLI_PARSER_H
 #define SKYCLI_PARSER_H
 
-#include "typing.hpp"
+#include "typing_util.hpp"
 
 #include <string>
 #include <sstream>

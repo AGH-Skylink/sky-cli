@@ -1,7 +1,7 @@
 #ifndef SKYCLI_HELP_MESSAGE_H
 #define SKYCLI_HELP_MESSAGE_H
 
-#include "typing.hpp"
+#include "typing_util.hpp"
 
 #include <string>
 #include <vector>

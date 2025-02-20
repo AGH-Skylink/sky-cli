@@ -1,7 +1,7 @@
 #ifndef SKYCLI_VAR_HOLDER
 #define SKYCLI_VAR_HOLDER
 
-#include "typing.hpp"
+#include "typing_util.hpp"
 
 #include <map>
 #include <string>

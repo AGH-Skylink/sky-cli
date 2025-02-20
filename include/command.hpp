@@ -1,7 +1,7 @@
 #ifndef SKYCLI_COMMAND_H
 #define SKYCLI_COMMAND_H
 
-#include "typing.hpp"
+#include "typing_util.hpp"
 #include "parser.hpp"
 #include "static_var_holder.hpp"
 
