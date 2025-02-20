@@ -8,7 +8,7 @@
 6. [Examples](#examples)
 
 ## Overview
-**Sky-cli** is a command-line interface building library, built on top of *GNU Readline* with C++17. The project is compiled and installed via *CMake*. Library's inner functionality is unit-tested with the help of *GoogleTest* framework. It abstracts away some necessary boilerplate when building a CLI.
+**sky-cli** is a command-line interface building library, built on top of *GNU Readline* with C++17. The project is compiled and installed via *CMake*. Library's inner functionality is unit-tested with the help of *GoogleTest* framework. It abstracts away some necessary boilerplate when building a CLI.
 
 The library has been created for student scientific club **AGH Skylink**, as a means for quick and easy deployment of prototype CLIs for various projects of the club. The library is open-source and free to use under the provided license.
 
@@ -76,7 +76,7 @@ skycli::CLI example(const char &delim); // sets a custom argument delimeter
 skycli::CLI example(const std::string &prompt, const char &delim); // sets a custom prompt and delimeter
 ```
 
-**Sky-cli** provides several macros to streamline user experience. The most important one is used to add new commands to a `CLI` object:
+**sky-cli** provides several macros to streamline user experience. The most important one is used to add new commands to a `CLI` object:
 ```cpp
 add_command_to_cli(cli_obj, command_name, description, function, ...);
 ```
@@ -172,7 +172,7 @@ void example_func(STATIC_VARS(), int a, int b) {
 And remember to add that variable to your `CLI` object inside `main`:
 ```cpp
 skycli::CLI cli;
-ADD_VAR(variable1);
+ADD_VAR(cli, variable1);
 ```
 You can access the variable inside functions in three ways:
 ```cpp
@@ -265,10 +265,10 @@ void get_param(STATIC_VARS(), std::string param) {
 int main() {
 	skycli::CLI cli;
 	
-	ADD_VAR(temp);
-	ADD_VAR(pressure);
+	ADD_VAR(cli, temp);
+	ADD_VAR(cli, pressure);
 	add_command_to_cli_s(cli, "set", "Set the value of a given parameter", set_param, std::string, double);
-	add_command_to_cli_s(cli, "get", "Print the value of a given parameter", get_param, std::string);");
+	add_command_to_cli_s(cli, "get", "Print the value of a given parameter", get_param, std::string);
 	
 	cli.run_loop();
 }
