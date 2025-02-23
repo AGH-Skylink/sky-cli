@@ -23,7 +23,7 @@ private:
     std::shared_ptr<StaticVarHolder> static_vars;
     std::vector<HelpMessage> help_messages;
 
-    void print_help();
+    void print_help(std::ostream &stream);
 
     /** @brief Handle a CmdResponse during runtime
     *
