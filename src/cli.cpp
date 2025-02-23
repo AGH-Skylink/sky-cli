@@ -6,20 +6,20 @@
 
 namespace skycli {
 
-void CLI::print_help() {
-    std::cout << "AVAILABLE COMMANDS:" << std::endl;
+void CLI::print_help(std::ostream &stream) {
+    stream << "AVAILABLE COMMANDS:" << std::endl;
 
     for (auto msg : help_messages) {
-        msg.print_message();
+        msg.print_message(stream);
     }
 
-    std::cout << "help/HELP - argument #: 0" << std::endl;
-    std::cout << "    " << "Lists all available commands" << std::endl;
-    std::cout << "--------------------" << std::endl; 
+    stream << "help/HELP - argument #: 0" << std::endl;
+    stream << "    " << "Lists all available commands" << std::endl;
+    stream << "--------------------" << std::endl; 
 
-    std::cout << "exit/EXIT - argument #: 0" << std::endl;
-    std::cout << "    " << "Exits the CLI" << std::endl;
-    std::cout << "--------------------" << std::endl; 
+    stream << "exit/EXIT - argument #: 0" << std::endl;
+    stream << "    " << "Exits the CLI" << std::endl;
+    stream << "--------------------" << std::endl; 
 }
 
 bool CLI::handle_cmd_response(CmdResponse response) {
@@ -64,7 +64,7 @@ void CLI::run_loop() {
                 break;
             }
             else if (cmd_token.value() == "help" || cmd_token.value() == "HELP") {
-                this->print_help();
+                this->print_help(std::cout);
                 continue;
             }
 

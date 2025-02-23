@@ -24,7 +24,7 @@ public:
         arg_count{type_vec.size()}, 
         description{desc} {}
 
-    void print_message();
+    void print_message(std::ostream &stream);
 };
 
 } // namespace skycli
