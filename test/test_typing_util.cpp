@@ -5,6 +5,12 @@
 
 using namespace skycli;
 
+TEST(TypingUtilTests, ExceptionOnUnknownType) {
+    TypingUtil util;
+
+    ASSERT_THROW(util.deduce_type("not_a_type_name"), std::logic_error);
+}
+
 class UtilGetTypeStringTest : public ::testing::TestWithParam<std::tuple<arg_type_t, std::string>> {
   protected:
     TypingUtil util;

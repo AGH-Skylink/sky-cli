@@ -4,6 +4,7 @@
 #include <cstring>
 #include <string>
 #include <stdexcept>
+#include <algorithm>
 
 namespace skycli {
 
@@ -32,7 +33,7 @@ arg_type_t TypingUtil::deduce_type(const char *type_name) {
 }
 
 std::string TypingUtil::get_type_string(arg_type_t type) {
-    return type_names[type];
+    return this->type_names[type];
 }
 
 } // namespace skycli

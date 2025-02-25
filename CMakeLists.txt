@@ -79,6 +79,7 @@ add_executable(runTests
     test/test_parser.cpp
     test/test_typing_util.cpp
     test/test_command.cpp
+    test/test_help_message.cpp
 )
 
 target_link_libraries(runTests gtest gtest_main pthread ${PROJECT_NAME})
