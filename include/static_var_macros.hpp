@@ -16,4 +16,7 @@ skycli::StaticVarHolder *STATICVARSOBFUSCATE
 #define GET_VAR(name) \
 (static_cast<skycli::StaticVar<name##typeobfuscate> *>(STATICVARSOBFUSCATE->get_ptr(#name)))->get()
 
+#define GET_VAR_S(str_name, type) \
+(static_cast<skycli::StaticVar<type> *>(STATICVARSOBFUSCATE->attempt_var_retrieval(str_name, std::cout)))->get()
+
 #endif

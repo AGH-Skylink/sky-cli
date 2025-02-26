@@ -6,6 +6,7 @@
 #include <map>
 #include <string>
 #include <memory>
+#include <iostream>
 
 namespace skycli {
 
@@ -27,15 +28,35 @@ public:
 class StaticVarHolder {
 private:
     std::map<std::string, std::unique_ptr<StaticVarBase>> variables;
+    std::unique_ptr<StaticVarBase> dummy;
 
 public:
+    StaticVarHolder() {
+        this->dummy = std::make_unique<StaticVarBase>();
+    }
+
     template <typename T>
     void add_new_var(std::string var_name) {
-        variables[var_name] = std::make_unique<StaticVar<T>>();
+        this->variables[var_name] = std::make_unique<StaticVar<T>>();
     }
 
     StaticVarBase *get_ptr(std::string var_name) {
-        return variables[var_name].get();
+        if (this->variables.find(var_name) != this->variables.end()) {
+            return this->variables[var_name].get();
+        }
+        else {
+            return this->dummy.get();
+        }
+    }
+
+    StaticVarBase *attempt_var_retrieval(std::string var_name, std::ostream &stream) {
+        StaticVarBase *var = this->get_ptr(var_name);
+
+        if (var == this->dummy.get()) {
+            stream << "Warning: Static variable of that name was not found, returning a dummy" << std::endl;
+        }
+
+        return var;
     }
 };
 
