@@ -11,6 +11,7 @@ add_library(${PROJECT_NAME}
     "src/typing_util.cpp"
     "src/parser.cpp"
     "src/help_message.cpp"
+    "src/static_var_holder.cpp"
 )
 
 include_directories(/usr/include/readline)

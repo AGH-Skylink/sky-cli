@@ -40,24 +40,9 @@ public:
         this->variables[var_name] = std::make_unique<StaticVar<T>>();
     }
 
-    StaticVarBase *get_ptr(std::string var_name) {
-        if (this->variables.find(var_name) != this->variables.end()) {
-            return this->variables[var_name].get();
-        }
-        else {
-            return this->dummy.get();
-        }
-    }
+    StaticVarBase *get_ptr(std::string var_name);
 
-    StaticVarBase *attempt_var_retrieval(std::string var_name, std::ostream &stream) {
-        StaticVarBase *var = this->get_ptr(var_name);
-
-        if (var == this->dummy.get()) {
-            stream << "Warning: Static variable of that name was not found, returning a dummy" << std::endl;
-        }
-
-        return var;
-    }
+    StaticVarBase *attempt_var_retrieval(std::string var_name, std::ostream &stream);
 };
 
 } // namespace skycli
